@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>Formulaire</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="css/materialize.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+
+<body>
+    
+<nav class="" role="navigation">
+    <div class="nav-wrapper container">
+      <a id="logo-container" href="#" class="brand-logo">INSCRIPTION</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="Region.html">Region</a></li>
+          <li><a href="Maison.html">Maison</a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="Region.html">Region</a></li>
+          <li><a href="Maison.html">Maison</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+   <div class="row">
+       <div class="col s12 center">
+       
+    <form method="post">
+        
+        <div>
+            <label for="nom"><h4>Nom : </h4></label>
+            <input type="text" id="nom" />
+        </div>
+        
+        <div>
+            <label for="Prénom"><h4>Prénom :</h4></label>
+            <input type="text" id="prénom" />
+        </div>
+    
+        <div>
+            <label for="courriel"><h4>Email :</h4></label>
+            <input type="email" id="courriel" />
+        </div>
+        
+        <div>
+           <label for="telephone"><h4>Téléphone</h4> : <input type="telNo" id="telephone" /></label>
+            
+        </div>
+            
+            <h4>Saisissez le nombre de nuit :</h4>
+    
+            <input type="text" list="nbnuit" id="nbnuitchoisis">
+        
+                     <datalist id="nbNuit" type="text" onchange="estimationPrix()">
+                         
+										  <option value="" disabled selected>Nombre de nuit </option>
+										  <option value="1">1</option>
+										  <option value="2">2</option>
+										  <option value="3">3</option>
+										  <option value="4">4</option>
+										  <option value="5">5</option>
+										  <option value="6">6</option>
+                    </datalist>
+        <script>
+            document.getElementById("nbnuitchoisis").addEventListener("change", estimationPrix() {
+            document.getElementById("resultat").innerText= "Estimation du prix : " + prixDeBase + " €";
+            });
+        </script>
+        
+        
+        <h4>Veuillez séléctionner les options : </h4><br>
+                
+        <input type="checkbox" id="parking" value="20" onclick="estimationPrix()" /> 
+                <label for="parking">Parking</label>
+
+         <input type="checkbox" id="animal" value="10" onclick="estimationPrix()"> 
+                <label for="animal">Animal</label>
+            
+        <input type="checkbox" id="fumeur" value="5" onclick="estimationPrix()">
+                <label for="fumeur">Fumeur</label>
+                
+        <h4>Pour quels motifs souhaitez-vous réserver : </h4><br>
+            
+            <input name="sejour" type="radio" id="sejourloisir" > Séjour loisirs
+                <label for="sejourloisir">Séjour loisirs</label>
+            
+            <input name="sejour" type="radio" id="sejourpro">
+                <label for="sejourpro">Séjour professionnel</label>
+ 
+            <h4>Choisissez le nombre de personne :</h4>
+             
+                <input type="text" list="nbpersonne" id="nbpersonnechoisis" >
+                
+                    <datalist id="nbpersonne" onchange="estimationPrix()">
+                        <option value="1">1 personne</option>
+                        <option value="2">2 personnes</option>
+                        <option value="3">3 personnes</option>
+                        <option value="4">4 personnes</option>
+                    </datalist>           
+
+                <h4>De quelle région êtes-vous originaire ? </h4>
+             
+                <input type=text list=regionorigine >
+                
+                    <datalist id=regionorigine >
+                        <option>Auvergne-Rhône-Alpes
+                        <option>Bourgogne-Franche-Comté
+                        <option>Bretagne
+                        <option>Centre-Val de Loire
+                        <option>Corse
+                        <option>Grand Est
+                        <option>Hauts-de-France
+                        <option>Île-de-France
+                        <option>Normandie
+                        <option>Nouvelle-Aquitaine
+                        <option>Occitanie
+                        <option>Pays de la Loire
+                        <option>Provence-Alpes-Côte d'Azur
+                    </datalist>           
+
+ <div class="row">    
+
+        <div class="col s6">
+            <p type="text" id="resultat">Estimation du prix : 0 €</p>
+        </div>
+     
+        <div class="col s6" >
+            <button class="btn waves-effect waves-light pulse" type="submit" name="action" >ENVOYER
+            </button>
+        </div>
+        </div>   
+                
+       </form>    
+       </div>
+</div>    
+    
+     <script type=text/javascript>
+        
+         function estimationPrix(){
+            var prixDeBase = 0;
+            var nbPersonne = parseInt(document.getElementById("nbpersonnechoisis").value);
+            var nbNuit = parseInt(document.getElementById("nbnuitchoisis").value)
+            var prixNuit=100;
+            
+            if (nbNuit >= 1) {
+                prixDeBase = prixNuit*nbNuit;
+                }
+            if (document.getElementById("parking").checked == true){
+                prixDeBase+=20;
+                }
+            if (document.getElementById("animal").checked == true) {
+                prixDeBase+=10;
+                }
+            if (document.getElementById("fumeur").checked == true) {
+                prixDeBase+=5;
+            }
+            if (nbPersonne == 3)
+                {
+                prixDeBase+=10;
+                }     
+             if (nbPersonne == 4)
+                {
+                prixDeBase+=20;
+                }
+                       
+            document.getElementById("resultat").innerText= "Estimation du prix : " + prixDeBase + " €";
+            }
+          
+    </script>
+    
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    
+    <footer class="card-panel teal lighten-2">
+        <div class="footer-copyright">
+            <div class="container">
+                © 2017 Copyright Simplon
+            </div>
+         </div>
+    </footer>
+
+        
+    
+</body>
+    
+
+</html>
